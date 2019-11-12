@@ -1,0 +1,20 @@
+<%= form_with(model: food, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :food_name %>
+    <%= form.text_field :food_name %>
+　</div>
+
+  <div class="field">
+    <%= form.label :review %>
+    <%= form.text_field :review %>
+　</div>
+
+  <div class="field">
+    <%= form.label :evaluation %>
+    <%= form.select(:evaluation, [1,2,3,4,5]) %>
+　</div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

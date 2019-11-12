@@ -10,16 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_06_131004) do
+ActiveRecord::Schema.define(version: 2019_11_12_084019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "foods", force: :cascade do |t|
+    t.bigint "country_id"
+    t.bigint "user_id"
+    t.string "food_name"
+    t.integer "evaluation"
+    t.text "review"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_foods_on_country_id"
+    t.index ["user_id"], name: "index_foods_on_user_id"
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "password_digest", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "admin", default: false, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end
